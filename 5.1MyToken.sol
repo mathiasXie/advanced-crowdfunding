@@ -32,7 +32,17 @@ contract MyToken {
         emit Transfer(address(0), owner, totalSupply);
     }
 
-    function transfer(address to, uint256 amount) public returns (bool) {
+    modifier ownerChecker() {
+        require(msg.sender == owner, "only the owner can do this operation");
+        _;
+    }
+
+    modifier enableChecker() {
+        require(transferEnable, "Transfers are not available at this time.");
+        _;
+    }
+
+    function transfer(address to, uint256 amount) public enableChecker returns (bool) {
         require(to != address(0), "can not transfer to zero address");
         require(amount > 0, "invalid amount");
         require(balanceOf[msg.sender] >= amount, "insuffcient balance");
@@ -54,7 +64,7 @@ contract MyToken {
         return true;
     }
 
-    function transferFrom(address from, address to, uint256 amount) public returns (bool) {
+    function transferFrom(address from, address to, uint256 amount) public enableChecker returns (bool) {
         require(from != address(0), "from cannot be zero address");
         require(to != address(0), "to cannot be zero address");
         require(balanceOf[from] >= amount, "insuffcient balance");
@@ -72,8 +82,7 @@ contract MyToken {
         return balanceOf[msg.sender];
     }
 
-    function mint(address to, uint256 amount) public returns(bool){
-        require(msg.sender == owner, "only the owner can mint tokens");
+    function mint(address to, uint256 amount) public ownerChecker enableChecker returns(bool){
         require(to != address(0), "to cannot be zero address");
         require(amount > 0, "invalid amount");
 
@@ -83,7 +92,11 @@ contract MyToken {
         return true;
     }
 
-    function burn(uint256 amount) public returns(bool) {
+    function switchEnable() public ownerChecker {
+        transferEnable = !transferEnable;
+    }
+
+    function burn(uint256 amount) public enableChecker returns(bool) {
         require(amount > 0, "invalid amount");
         require(balanceOf[msg.sender] >= amount, "insuffcient balance to burn");
 

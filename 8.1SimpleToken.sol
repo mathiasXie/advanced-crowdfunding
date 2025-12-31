@@ -1,0 +1,68 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+interface IERC20 {
+    function transfer(address to, uint256 amount) external returns(bool);
+    function approve(address spender, uint256 amount) external returns(bool);
+    function balanceOf(address account) external returns(uint256);
+    function transferFrom(address from, address to, uint256 amount) external returns(bool);
+}
+
+contract SimpleToken is IERC20 {
+    mapping (address => uint256) private _balances;
+    mapping (address => mapping (address => uint256)) private _allowences;
+
+    constructor() {
+        _balances[msg.sender] = 10000000 * 10 ** 18;
+    }
+
+    function transfer(address to, uint256 amount) external returns(bool){
+        require(_balances[msg.sender] >= amount, "[transfer]insuffcient amount");
+        _balances[msg.sender] -= amount;
+        _balances[to] += amount;
+        return true;
+    }
+
+    function approve(address spender, uint256 amount) external returns(bool){
+        require(_balances[msg.sender] >= amount, "[approve]insuffcient amount");
+        _allowences[msg.sender][spender] = amount;
+        return true;
+    }
+
+    function balanceOf(address account) external view returns(uint256){
+        return _balances[account];
+    }
+
+    function transferFrom(address from, address to, uint256 amount) external returns(bool){
+        require(_allowences[from][msg.sender] >= amount, "[transferFrom]insuffcient allowence");
+        require(_balances[from] >= amount, "[transferFrom]insuffcient amount");
+        
+        _allowences[from][msg.sender] -= amount;
+        _balances[from] -= amount;
+        _balances[to] += amount;
+        return true;
+    }
+
+}
+
+contract TokenSwap {
+    IERC20 public tokenA;
+    IERC20 public tokenB;
+    
+    event Swap(address indexed user, uint256 amountA, uint256 amountB);
+    
+    constructor(address _tokenA, address _tokenB) {
+        tokenA = IERC20(_tokenA);
+        tokenB = IERC20(_tokenB);
+    }
+    
+    function swap(uint256 amountA) external {
+        require(tokenA.transferFrom(msg.sender, address(this), amountA), "Transfer A failed");
+        
+        uint256 amountB = amountA; // 简化的1:1兑换
+        require(tokenB.transfer(msg.sender, amountB), "Transfer B failed");
+        
+        emit Swap(msg.sender, amountA, amountB);
+    }
+
+}

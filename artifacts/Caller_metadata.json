@@ -1,0 +1,130 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_callee",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "callee",
+				"outputs": [
+					{
+						"internalType": "contract Callee",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testCustomError",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testOk",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testPanic",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testRequireError",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"7.2Exception.sol": "Caller"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"7.2Callee.sol": {
+			"keccak256": "0x06beebfe08a1b82f34da7a95c557c6b4ecea7d55e5605e503529ebe021b8c972",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8d020c293390686b0718e9e61ef110a9bb777091555a0bcc0d7fb4cdb0116cd5",
+				"dweb:/ipfs/QmW4KeFhugvsKdVeNkqeJh2esWHQqYaVkBTYgj4hoWiQLw"
+			]
+		},
+		"7.2Exception.sol": {
+			"keccak256": "0x55bd2cb84eac1457ffd42244136f8220f92b6e973c1b96b173dba9dd8e762863",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://198887e2d694760cea01491b8be49cea61ab82a53653496c99757e38115aa020",
+				"dweb:/ipfs/QmVqjTws7P63UFYYMDhx6HViMDri4zmHD7f4Ae3fS5Srpy"
+			]
+		}
+	},
+	"version": 1
+}

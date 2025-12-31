@@ -574,7 +574,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"6.1ozpl.sol": "MyToken"
+			"6.1ozpl.sol": "StudyOpenZeppelin"
 		},
 		"evmVersion": "prague",
 		"libraries": {},
@@ -589,11 +589,11 @@
 	},
 	"sources": {
 		"6.1ozpl.sol": {
-			"keccak256": "0xd6ce5b9b65b7d1a95627eeb655a8724ada5aba50016771ac7f575e452535b554",
+			"keccak256": "0xb0eb6c806068a4f1929b509085f8f1d11f19d6de26f756bfa431154aa28301a7",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://93554bd5a28fca36d56c3cd56cd99136377fbd05a26f705b2ab0d4b481bf2a1c",
-				"dweb:/ipfs/QmWDgfZsQY9thf1mnKmC9qAEHQgx4Byn8GWT8JS9wcWWVo"
+				"bzz-raw://5c536efd860960a5dc674b7ffdc885df98d7f65e7a9c3e89dc36775cde50e8f9",
+				"dweb:/ipfs/QmSK9tR8V3z795dxBtE4DsUrspCX3VN53YE6bKJU5fHaqm"
 			]
 		},
 		"@openzeppelin/contracts/access/Ownable.sol": {
